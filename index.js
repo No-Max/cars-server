@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
-const port = 3000;
-const host = 'localhost';
+const port =  process.env.PORT || 3000;
+const host = process.env.HOST || 'localhost';
  
 app.get('/', (req, res) => {
   res.send(fs.readFileSync('./html/index.html', 'utf8'));
