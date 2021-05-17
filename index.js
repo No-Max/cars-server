@@ -12,6 +12,6 @@ app.get('/cars', (req, res) => {
   res.send(require('./db/cars.js'))
 })
  
-app.listen(port, host, () => {
+app.listen(port, () => {
   console.log(`Server started on ${port}`);
 });
