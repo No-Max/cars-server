@@ -3,7 +3,6 @@ const app = express();
 const fs = require('fs');
 
 const port =  process.env.PORT || 3000;
-const host = process.env.HOST || 'localhost';
  
 app.get('/', (req, res) => {
   res.send(fs.readFileSync('./html/index.html', 'utf8'));
@@ -14,5 +13,5 @@ app.get('/cars', (req, res) => {
 })
  
 app.listen(port, host, () => {
-  console.log(`Server started on ${host}:${port}`);
+  console.log(`Server started on ${port}`);
 });
