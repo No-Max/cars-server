@@ -1,4 +1,4 @@
-module.exports = [
+const cars = [
     {
         id: 1,
         brand: 'Audi',
@@ -189,3 +189,10 @@ module.exports = [
         ],
     },
 ];
+
+const brands = Array.from(new Set(cars.map(car => car.brand)));
+
+module.exports = {
+    cars,
+    brands
+}

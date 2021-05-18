@@ -11,7 +11,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cars', (req, res) => {
-  res.send(require('./db/cars.js'))
+  res.send(require('./db/cars.js').cars)
+})
+
+app.get('/brands', (req, res) => {
+  res.send(require('./db/cars.js').brands)
 })
  
 app.listen(port, () => {
