@@ -352,7 +352,7 @@ const cars = [
     },
 ];
 
-const getCars = () => cars;
+const getCars = () => cars.map(({parameters, bigImg, ...car}) => car);
 
 const getBrands = () => Array.from(new Set(cars.map(car => car.brand)));
 
