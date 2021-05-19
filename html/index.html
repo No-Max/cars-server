@@ -12,14 +12,29 @@
     </div>
     <table border="1" style="border-collapse: collapse; width: 100%;">
         <tr>
-            <td><b>эндпоинт</b></td>
-            <td><b>тип запроса</b></td>
-            <td><b>описание</b></td>
+            <td><b>Эндпоинт</b></td>
+            <td><b>Тип запроса</b></td>
+            <td><b>Описание</b></td>
         </tr>
         <tr>
-            <td>/cars</td>
+            <td><a href="/cars">/cars</a></td>
             <td>GET</td>
             <td>Получить список всех автомобилей</td>
+        </tr>
+        <tr>
+            <td><a href="/cars/1">/cars/:carId</a></td>
+            <td>GET</td>
+            <td>Получить автомобиль по id</td>
+        </tr>
+        <tr>
+            <td><a href="/brands">/brands</a></td>
+            <td>GET</td>
+            <td>Получить список брендов</td>
+        </tr>
+        <tr>
+            <td><a href="/models/Audi">/models/:brand</a></td>
+            <td>GET</td>
+            <td>Получить список  моделей по бренду</td>
         </tr>
     </table>
 </body>
