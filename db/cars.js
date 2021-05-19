@@ -273,26 +273,26 @@ const cars = [
         id: 11,
         brand: 'Mitsubishi',
         model: 'Pajero',
-        img: 'mitsu-pajero-1.jpeg',
-        bigImg: 'mitsu-pajero-1-big.jpeg',
+        img: 'mitsu-pajero-2.jpeg',
+        bigImg: 'mitsu-pajero-2-big.jpeg',
         price: 45000,
         description: 'Достойный авто по доступной цене. Приятный разгон и хорошая шумоизоляция.',
         parameters: [
             {
                 name: 'Максимальная скорость',
-                value: '180 км/ч'
+                value: '160 км/ч'
             }, {
                 name: 'Вес',
-                value: '2200кг'
+                value: '2400кг'
             }, {
                 name: 'Привод',
                 value: 'Полный'
             }, {
                 name: 'Цвет',
-                value: 'Серый'
+                value: 'Белый'
             }, {
                 name: 'Модельный год',
-                value: '2016'
+                value: '2010'
             }
         ],
     },
