@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const db = require("./db/cars.js");
+const sequelize = require("./db")
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -55,6 +56,25 @@ app.get("/models/:brand", (req, res) => {
   res.send(models);
 });
 
-app.listen(port, () => {
+app.get("/test", async (req, res) => {
+  res.send(await sequelize.models.Car.findAll({
+    include: [{
+      model: sequelize.models.Brand,
+    },
+    {
+      model: sequelize.models.Model,
+    },
+  ]
+  }))
+})
+
+app.listen(port, async () => {
   console.log(`Server started on ${port}`);
+  sequelize.sync({ alter: true });
+  try {
+    await sequelize.authenticate();
+    console.log('DB connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 });
