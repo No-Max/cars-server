@@ -50,8 +50,8 @@ app.get("/cars", async (req, res) => {
   }))
 })
 
-app.get("/cars/:id", async (req, res) => {
-  const carId = req.params.id;
+app.get("/cars/:carId", async (req, res) => {
+  const carId = req.params.carId;
   const car = await Car.findOne({
     where: {
       id: carId,
@@ -81,6 +81,19 @@ app.post("/cars", async (req, res) => {
   Car.create(req.body)
     .then(response => res.send(response))
     .catch(error => res.status(400).send({ status: 400, message: 'В запросе ошибка', error }));
+})
+
+app.delete("/cars/:carId", async (req, res) => {
+  const carId = req.params.carId;
+  Car.destroy({
+    where: {
+      id: carId
+    }
+  })
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      res.sendStatus(400)
+    });
 })
 
 app.listen(port, async () => {
