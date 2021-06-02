@@ -6,6 +6,14 @@ const sequelize = new Sequelize({
 });
 
 const Car = sequelize.define('Car', {
+  ModelId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  BrandId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   img: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -16,6 +24,7 @@ const Car = sequelize.define('Car', {
   },
   price: {
     type: DataTypes.NUMBER,
+    allowNull: false,
   },
   description: {
     type: DataTypes.STRING,
@@ -70,4 +79,10 @@ Car.belongsTo(Model);
 Car.hasMany(Parameter);
 Parameter.belongsTo(Car);
 
-module.exports = sequelize;
+module.exports = {
+  Car,
+  Brand,
+  Parameter,
+  Model,
+  sequelize,
+};

@@ -2,9 +2,8 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const bodyParser = require('body-parser');
+const { Parameter, Brand, Car, Model, sequelize } = require("./db");
 
-const sequelize = require("./db");
-const { response } = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -17,15 +16,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/brands", async (req, res) => {
-  res.send(await sequelize.models.Brand.findAll());
+  res.send(await Brand.findAll());
 });
 
-app.get("/models/:brand", async (req, res) => {
-  const brand = req.params.brand;
-  const models = await sequelize.models.Model.findAll({
+app.get("/models/:brandId", async (req, res) => {
+  const models = await Model.findAll({
     where: {
-      BrandId: brand
-    }
+      BrandId: req.params.brandId
+    },
+    attributes: ['id', 'name']
   })
   res.send(models);
 });
@@ -33,22 +32,18 @@ app.get("/models/:brand", async (req, res) => {
 // cars
 app.get("/cars", async (req, res) => {
   let where = {};
-  if(req.query && req.query.brand) where.BrandId = req.query.brand;
-  if(req.query && req.query.model) where.ModelId = req.query.model;
+  if(req.query && req.query.BrandId) where.BrandId = req.query.BrandId;
+  if(req.query && req.query.ModelId) where.ModelId = req.query.ModelId;
 
-  res.send(await sequelize.models.Car.findAll({
+  res.send(await Car.findAll({
     where,
     include: [
       {
-        model: sequelize.models.Brand,
+        model: Brand,
       },
       {
-        model: sequelize.models.Model,
+        model: Model,
         attributes: ['id', 'name'],
-      },
-      {
-        model: sequelize.models.Parameter,
-        attributes: ['id', 'name', 'value'],
       },
     ],
     attributes: ['id', 'img', 'bigImg', 'description', 'price'],
@@ -57,7 +52,7 @@ app.get("/cars", async (req, res) => {
 
 app.get("/cars/:id", async (req, res) => {
   const carId = req.params.id;
-  const car = await sequelize.models.Car.findOne({
+  const car = await Car.findOne({
     where: {
       id: carId,
     },
@@ -83,7 +78,7 @@ app.get("/cars/:id", async (req, res) => {
 });
 
 app.post("/cars", async (req, res) => {
-  sequelize.models.Car.create(req.body)
+  Car.create(req.body)
     .then(response => res.send(response))
     .catch(error => res.status(400).send({ status: 400, message: 'В запросе ошибка', error }));
 })

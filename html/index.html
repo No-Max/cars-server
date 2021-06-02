@@ -15,26 +15,57 @@
             <td><b>Эндпоинт</b></td>
             <td><b>Тип запроса</b></td>
             <td><b>Описание</b></td>
+            <td><b>Параметры</b></td>
         </tr>
         <tr>
-            <td><a href="/cars">/cars</a></td>
+            <td><a href="/cars?BrandId=1">/cars?BrandId=1</a></td>
             <td>GET</td>
             <td>Получить список всех автомобилей</td>
+            <td>
+                <div>параметры запроса для фильтрации:</div>
+                <code>BrandId, ModelId</code>
+            </td>
         </tr>
         <tr>
             <td><a href="/cars/1">/cars/:carId</a></td>
             <td>GET</td>
             <td>Получить автомобиль по id</td>
+            <td><code></code></td>
+        </tr>
+        <tr>
+            <td><a href="#">/cars</a></td>
+            <td>POST</td>
+            <td>Создать автомобиль</td>
+            <td>
+                Пример тела запроса (body):
+                <code>
+                    <pre>
+    {
+        "BrandId": 1,
+        "ModelId": 1,
+        "img": "audi-a1-1.jpeg",
+        "bigImg": "audi-a1-1-big.jpeg",
+        "price": 10000,
+        "description": "Описание"
+    }
+                    </pre>
+                </code>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">&nbsp;</td>
         </tr>
         <tr>
             <td><a href="/brands">/brands</a></td>
             <td>GET</td>
             <td>Получить список брендов</td>
+            <td><code></code></td>
         </tr>
         <tr>
-            <td><a href="/models/Audi">/models/:brand</a></td>
+            <td><a href="/models/1">/models/:brandId</a></td>
             <td>GET</td>
             <td>Получить список  моделей по бренду</td>
+            <td><code></code></td>
         </tr>
     </table>
 </body>
